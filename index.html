@@ -101,6 +101,7 @@
     <div class="container">
         <div class="header-row">
             <h1>🤖 AI Buddy</h1>
+            <button id="themeToggle" onclick="toggleTheme()">🌓 Light/Dark</button>
         </div>
         <p>Your friendly neighborhood assistant that helps you learn.</p>
         
@@ -125,7 +126,13 @@
     </div>
 
     <script>
-
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+        }
+        
         function getExplanation() {
             const code = document.getElementById('codeInput').value;
             const language = document.getElementById('languageSelect').value;
