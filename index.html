@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coding Buddy</title>
+    <style>
+        /* Base Colors */
+        :root {
+            --bg-color: #f0f2f5;
+            --container-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --border-color: #ddd;
+            --accent-color: #5865F2;
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            --bg-color: #18191c;
+            --container-bg: #2f3136;
+            --text-color: #ffffff;
+            --border-color: #444;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 800px; 
+            margin: 40px auto; 
+            padding: 20px; 
+            line-height: 1.6; 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .container { 
+            background: var(--container-bg); 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { margin: 0; display: flex; align-items: center; gap: 10px; }
+        
+        label { display: block; margin-bottom: 8px; font-weight: bold; opacity: 0.9; }
+        
+        select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 8px; 
+            font-size: 16px; 
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background: var(--container-bg);
+            color: var(--text-color);
+        }
+
+        textarea { height: 200px; font-family: 'Fira Code', monospace; resize: vertical; }
+
+        .btn-row { display: flex; gap: 10px; }
+
+        button { 
+            background-color: var(--accent-color); 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        #themeToggle {
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+        }
+
+        /* Chat Bubble Style */
+        #output { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background: var(--container-bg); 
+            border: 2px solid var(--accent-color);
+            border-radius: 15px; 
+            position: relative;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <h1>🤖 AI Buddy</h1>
+        </div>
+        <p>Your friendly neighborhood assistant that helps you learn.</p>
+        
+        <label for="languageSelect">Select Language:</label>
+        <select id="languageSelect">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="c">C / C++</option>
+            <option value="java">Java</option>
+            <option value="html/css">HTML / CSS</option>
+        </select>
+
+        <label for="codeInput">Paste your code:</label>
+        <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+        
+        <button onclick="getExplanation()">Explain My Code</button>
+
+        <div id="output">
+            <strong>Buddy says:</strong>
+            <p id="buddyResponse"></p>
+        </div>
+    </div>
+
+    <script>
+
+        function getExplanation() {
+            const code = document.getElementById('codeInput').value;
+            const language = document.getElementById('languageSelect').value;
+            const outputDiv = document.getElementById('output');
+            const responseP = document.getElementById('buddyResponse');
+
+            if (code.trim() === "") {
+                alert("Please paste some code first!");
+                return;
+            }
+
+            outputDiv.style.display = "block";
+            responseP.innerText = `I see you are working with ${language}! Once the API is ready, I'll explain this code for you.`;
+        }
+    </script>
+</body>
+</html>
